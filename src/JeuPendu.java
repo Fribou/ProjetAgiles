@@ -1,6 +1,6 @@
 
 import java.awt.BorderLayout;
-.import java.awt.Color;
+import java.awt.Color;
 import java.awt.Dimension;
 	import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -91,7 +91,7 @@ boolean resultat=false;
 				}
 				else{
 					dispose();
-			    	JOptionPane.showMessageDialog(null,"Merci d'être passé");
+			    	JOptionPane.showMessageDialog(null,"Merci d'ï¿½tre passï¿½");
 				}
 
 			}
@@ -105,13 +105,13 @@ boolean resultat=false;
 			else
 				
 				if(Proposition.getText().length()==0)
-					Proposition.setText("Vous n'avez rien rentré");
+					Proposition.setText("Vous n'avez rien rentrï¿½");
 				else	
 					Proposition.setText("Ce n'est pas "+ text.getText());
 					nombre++;
 			}
 			if(resultat==true){
-				JOptionPane.showMessageDialog(null,"Vous avez gagné en "+nombre+ " essaie");
+				JOptionPane.showMessageDialog(null,"Vous avez gagnï¿½ en "+nombre+ " essaie");
 				
 			}
 			
@@ -158,7 +158,7 @@ boolean resultat=false;
 					}
 					else{
 						dispose();
-				    	JOptionPane.showMessageDialog(null,"Merci d'être passé");
+				    	JOptionPane.showMessageDialog(null,"Merci d'ï¿½tre passï¿½");
 					}
 				}
 				else{
