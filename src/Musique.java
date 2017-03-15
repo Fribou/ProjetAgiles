@@ -13,6 +13,8 @@ import java.awt.Label;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.AbstractAction;
@@ -32,6 +34,9 @@ import javax.swing.JPanel;
 public class Musique extends JFrame {
     
     JPanel Principale = new JPanel();
+    JComboBox liste = new JComboBox();
+    File name = new File("C:\\Users\\N. Desmarais\\Desktop\\ProjetAgile\\Musique"); 
+    String [] test;
     
     
     public Musique(){
@@ -51,32 +56,25 @@ public class Musique extends JFrame {
 	}
     
     private void init(){
-		
-		panel.setLayout(new BorderLayout());
-		panel3.setLayout(new FlowLayout());
-		panel4.setLayout(new BorderLayout());
-		panel5.setLayout(new FlowLayout());
-		panel6.setLayout(new FlowLayout());
-		
-		panel2.add(button2);
-		panel3.add(label,FlowLayout.LEFT);
-		panel3.add(text);
-		
-		panel5.add(button);
-		panel5.add(Proposition);
-		panel5.add(select);
-		
-		panel6.add(mot);
-		panel6.add(alphabet);
-		panel6.add(valider);
-		
-		panel4.add(panel5,BorderLayout.NORTH);
-		panel4.add(panel6,BorderLayout.SOUTH);
-		
-		panel.add(panel2,BorderLayout.NORTH);
-		panel.add(panel3,BorderLayout.CENTER);
-		panel.add(panel4,BorderLayout.SOUTH);
+        
+        test = listerRepertoire(name);
+        int i;
+        for(i=0;i<test.length;i++){ 
+            liste.addItem(test[i]);
+        } 
+        Principale.add(liste,BorderLayout.CENTER);
+        
 	
 		
-		}
+    }
+    
+        public String [] listerRepertoire(File repertoire){ 
+            String [] listefichiers; 
+
+            int i; 
+            listefichiers=repertoire.list();
+            return (listefichiers);
+        } 
 }
+
+
