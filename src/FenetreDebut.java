@@ -8,12 +8,12 @@ import javax.swing.JOptionPane;
 public class FenetreDebut {
 
 		FenetreDebut(){
-			ImageIcon icon = new ImageIcon("C:/PIHM/dés.png");
+			ImageIcon icon = new ImageIcon("C:/PIHM/dï¿½s.png", "UTF-8");
 			JLabel label = new JLabel(icon);
-			String message ="voulez vous vous amuser ?  :)";
+			String message = "voulez vous vous amuser ?  :)";
 			String titre="Quelle est votre choix";
 			int reply = JOptionPane.showConfirmDialog(null, label, titre, JOptionPane.YES_NO_OPTION);
-			String Aurevoir="Merci d'être passé  XD";
+			String Aurevoir="Merci d'ï¿½tre passï¿½  XD";
 		    if (reply == JOptionPane.YES_OPTION)
 		    {
 		    	Accueil accueil= new Accueil();

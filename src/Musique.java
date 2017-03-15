@@ -35,8 +35,10 @@ public class Musique extends JFrame {
     
     JPanel Principale = new JPanel();
     JComboBox liste = new JComboBox();
-    File name = new File("C:\\Users\\N. Desmarais\\Desktop\\ProjetAgile\\Musique"); 
+    File name = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Musique"); 
     String [] test;
+    JButton lec = new JButton(new Icilecture("Lecture/Stop"));
+    int Lecture = 0;
     
     
     public Musique(){
@@ -63,6 +65,7 @@ public class Musique extends JFrame {
             liste.addItem(test[i]);
         } 
         Principale.add(liste,BorderLayout.CENTER);
+        Principale.add(lec,BorderLayout.CENTER);
         
 	
 		
@@ -74,7 +77,32 @@ public class Musique extends JFrame {
             int i; 
             listefichiers=repertoire.list();
             return (listefichiers);
-        } 
+        }
+        
+    public Object GetMusique(){
+        return(liste.getSelectedItem());
+    }
+    
+    public class Icilecture extends AbstractAction{
+        Audio son = new Audio(liste.getSelectedItem());
+        public Icilecture(String text){
+            super(text);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e){
+            if(Lecture ==0){
+                son = new Audio(liste.getSelectedItem());
+                Lecture = 1;
+                son.start();
+            }
+            else{
+                Lecture = 0;
+                son.stop();
+            }
+        }
+    
+    }
+    
+   
 }
-
-

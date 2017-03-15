@@ -7,9 +7,14 @@ public class Audio extends Thread{
      
     AudioInputStream audioInputStream = null;
     SourceDataLine line;
+    String musique;
+    public Audio(Object test){
+        musique = (String)test;
+        System.out.println(musique);
+    }
      
     public void run(){
-        File fichier = new File("C:/audio.wav");
+        File fichier = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Musique/"+musique);
         try {
         AudioFileFormat format = AudioSystem.getAudioFileFormat(fichier);
         } catch (UnsupportedAudioFileException e1) {

@@ -9,7 +9,7 @@ public class audio2 extends Thread{
     SourceDataLine line;
      
     public void run(){
-        File fichier = new File("C:/sardine.wav");
+        File fichier = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Musique/Remember.wav");
         try {
         AudioFileFormat format = AudioSystem.getAudioFileFormat(fichier);
         } catch (UnsupportedAudioFileException e1) {
