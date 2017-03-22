@@ -1,4 +1,5 @@
 
+import interfacedivertissement.AccueilQuiz;
 	import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -50,10 +51,10 @@ import javax.swing.JTextField;
 		JMenuItem bleu = new JMenuItem(new IciBleu("bleu"));
 		JMenuItem reset = new JMenuItem(new IciReset("gris"));
 		JMenuItem penduA = new JMenuItem(new IciPen("Pendu aveugle ?"));
-		JMenuItem ou = new JMenuItem(new Iciou("Casse tête?"));
+		JMenuItem ou = new JMenuItem(new Iciou("Casse tï¿½te?"));
 		JButton pendu = new JButton(new IciPendu("Pendu Aveugle"));
-		JButton Carte = new JButton(new IciCarte("Casse tête?"));
-		JButton Quiz = new JButton(new IciQuiz("Quiz varié"));
+		JButton Carte = new JButton(new IciCarte("Casse tï¿½te?"));
+		JButton Quiz = new JButton(new IciQuiz("Quiz variï¿½"));
         ImageIcon icon = new ImageIcon(new ImageIcon("C:/PIHM/moi.jpg").getImage().getScaledInstance(70, 150, Image.SCALE_DEFAULT));
         ImageIcon icon2 = new ImageIcon(new ImageIcon("C:/PIHM/pendu.jpg").getImage().getScaledInstance(70, 150, Image.SCALE_DEFAULT));
         ImageIcon icon3 = new ImageIcon(new ImageIcon("C:/PIHM/loupe.jpg").getImage().getScaledInstance(70, 150, Image.SCALE_DEFAULT));
@@ -386,7 +387,7 @@ public class IciQuiz extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		QUIZ qui = new QUIZ();
+		AccueilQuiz.main();
 	}	
 }
 
@@ -399,7 +400,7 @@ public class IciPen extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JOptionPane.showMessageDialog(null, "le but du jeu est le même que"
+		JOptionPane.showMessageDialog(null, "le but du jeu est le mï¿½me que"
 				+ "\n celui du pendu classique sauf que nous ne devoilons pas la position "
 				+ "\ndes lettres dans le mots.","Regle Pendu Aveugle", JOptionPane.INFORMATION_MESSAGE, icon2);
 	}	
@@ -414,10 +415,10 @@ public class Iciou extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JOptionPane.showMessageDialog(null, "le but du jeu est de trouver la couleur correspondand à celle afficher en fond d'écran,"
-				+ " c'est un jeu de memoire où il faut memoriser la position des couleur dans chaque case,"
-				+ " à chaque bonne reponse votre compteur augmente mais à la moindre erreur le jeu se termine et "
-				+ "rebelote.","Regle Casse tête ?", JOptionPane.INFORMATION_MESSAGE, icon3);
+		JOptionPane.showMessageDialog(null, "le but du jeu est de trouver la couleur correspondand ï¿½ celle afficher en fond d'ï¿½cran,"
+				+ " c'est un jeu de memoire oï¿½ il faut memoriser la position des couleur dans chaque case,"
+				+ " ï¿½ chaque bonne reponse votre compteur augmente mais ï¿½ la moindre erreur le jeu se termine et "
+				+ "rebelote.","Regle Casse tï¿½te ?", JOptionPane.INFORMATION_MESSAGE, icon3);
 	}	
 }
 
@@ -429,9 +430,9 @@ public class IciQui extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JOptionPane.showMessageDialog(null, "Etudiant en DUT informtique à l'IUT lyon 1"
+		JOptionPane.showMessageDialog(null, "Etudiant en DUT informtique ï¿½ l'IUT lyon 1"
 				+ "\nDibandi Davy"
-				+ "\nnée à Fort-De-France"
+				+ "\nnï¿½e ï¿½ Fort-De-France"
 				+ "\nle 03/11/1997 ", "Auteur", JOptionPane.INFORMATION_MESSAGE, icon);
 
 	}	
@@ -445,9 +446,9 @@ public class IciQui3 extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JOptionPane.showMessageDialog(null, "Etudiant en DUT informtique à l'IUT lyon 1"
+		JOptionPane.showMessageDialog(null, "Etudiant en DUT informtique ï¿½ l'IUT lyon 1"
 				+ "\nAlexis Garcia"
-				+ "\nnée à Vienne"
+				+ "\nnï¿½e ï¿½ Vienne"
 				+ "\nle 26/07/1997 ", "Auteur", JOptionPane.INFORMATION_MESSAGE);
 
 	}	
@@ -462,9 +463,9 @@ public class IciQui2 extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JOptionPane.showMessageDialog(null, "Etudiant en DUT informtique à l'IUT lyon 1"
+		JOptionPane.showMessageDialog(null, "Etudiant en DUT informtique ï¿½ l'IUT lyon 1"
 				+ "\nEric Bayundo Davy"
-				+ "\nnée à Rouanda"
+				+ "\nnï¿½e ï¿½ Rouanda"
 				+ "\nle 03/11/1997 ", "Auteur", JOptionPane.INFORMATION_MESSAGE);
 
 	}	
