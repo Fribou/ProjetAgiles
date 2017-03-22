@@ -38,8 +38,9 @@ import javax.swing.JTextField;
 		JMenu regle = new JMenu("Regle");
 		JMenu auteur = new JMenu("A Propos");
 		JMenuItem mus = new JMenuItem(new Icimusique("Liste des Musiques"));
-		JMenuItem sardine = new JMenuItem(new Iciplayliste("Créé Playliste"));
-		JMenuItem kalash = new JMenuItem("Modifié Playliste");
+		JMenuItem newplay = new JMenuItem(new Iciplayliste("Créé Playliste"));
+		JMenuItem play = new JMenuItem(new IciModifPlay("Modifié Playliste"));
+                JMenuItem impor = new JMenuItem("Importer musique");
 		JRadioButtonMenuItem davy = new JRadioButtonMenuItem(new IciQui("davy"));
 		JRadioButtonMenuItem Eric = new JRadioButtonMenuItem(new IciQui2("Eric"));
 		JRadioButtonMenuItem Alexis = new JRadioButtonMenuItem(new IciQui3("Alexis"));
@@ -95,8 +96,9 @@ import javax.swing.JTextField;
 			auteur1.add(Eric);
 			auteur.add(auteur1);
 			musique.add(mus);
-			musique.add(sardine);
-			musique.add(kalash);
+			musique.add(newplay);
+			musique.add(play);
+                        musique.add(impor);
 			regle.add(penduA);
 			regle.add(ou);
 			menuBar.add(couleur);
@@ -138,7 +140,19 @@ public class Iciplayliste extends AbstractAction{
 
 			@Override
                         public void actionPerformed(ActionEvent e) {
-                                Musique son = new Musique();
+                                Playliste son = new Playliste();
+                        }	
+		}
+
+public class IciModifPlay extends AbstractAction{
+			
+			public IciModifPlay(String texte){
+				super(texte);
+			}
+
+			@Override
+                        public void actionPerformed(ActionEvent e) {
+                                ModifPlay son = new ModifPlay();
                         }	
 		}
 

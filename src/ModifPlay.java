@@ -13,9 +13,14 @@ import java.awt.Label;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -31,19 +36,19 @@ import javax.swing.JPanel;
  *
  * @author N. Desmarais
  */
-public class Musique extends JFrame {
+public class ModifPlay extends JFrame {
     
     JPanel Principale = new JPanel();
-    JComboBox liste = new JComboBox();
-    JComboBox play = new JComboBox();
-    File name = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Musique"); 
+    JComboBox listeMus = new JComboBox();
+    JComboBox listeplay = new JComboBox();
+    File musique = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Musique");
+    File playliste = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Playliste");
     String [] test;
-    JButton lec = new JButton(new Icilecture("Lecture/Stop"));
-    JButton lecplay = new JButton(new IcilecturePlay("Lecture/Stop"));
+    JButton lec = new JButton(new IciAjout("Lecture/Stop"));
     int Lecture = 0;
     
     
-    public Musique(){
+    public ModifPlay(){
 		super();
 		build();
                 init();
@@ -61,12 +66,17 @@ public class Musique extends JFrame {
     
     private void init(){
         
-        test = listerRepertoire(name);
+        test = listerRepertoire(musique);
         int i;
         for(i=0;i<test.length;i++){ 
-            liste.addItem(test[i]);
+            listeMus.addItem(test[i]);
         } 
-        Principale.add(liste,BorderLayout.CENTER);
+        test = listerRepertoire(playliste);
+        for(i=0;i<test.length;i++){ 
+            listeplay.addItem(test[i]);
+        } 
+        Principale.add(listeplay,BorderLayout.CENTER);
+        Principale.add(listeMus,BorderLayout.CENTER);
         Principale.add(lec,BorderLayout.CENTER);
         
 	
@@ -80,27 +90,22 @@ public class Musique extends JFrame {
             listefichiers=repertoire.list();
             return (listefichiers);
         }
-        
-    public Object GetMusique(){
-        return(liste.getSelectedItem());
-    }
     
-    public class Icilecture extends AbstractAction{
-        Audio son = new Audio(liste.getSelectedItem());
-        public Icilecture(String text){
+    public class IciAjout extends AbstractAction{
+        public IciAjout(String text){
             super(text);
         }
 
         @Override
         public void actionPerformed(ActionEvent e){
-            if(Lecture ==0){
-                son = new Audio(liste.getSelectedItem());
-                Lecture = 1;
-                son.start();
-            }
-            else{
-                Lecture = 0;
-                son.stop();
+            String play = (String) listeplay.getSelectedItem();
+            String mus = (String) listeMus.getSelectedItem();
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Playliste/"+play),true));
+                writer.write(String.valueOf(mus)+"\n");
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Playliste.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     

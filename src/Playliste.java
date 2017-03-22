@@ -13,9 +13,14 @@ import java.awt.Label;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -26,24 +31,25 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 	import javax.swing.JTextField;
 /**
  *
  * @author N. Desmarais
  */
-public class Musique extends JFrame {
+public class Playliste extends JFrame {
     
     JPanel Principale = new JPanel();
-    JComboBox liste = new JComboBox();
-    JComboBox play = new JComboBox();
-    File name = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Musique"); 
-    String [] test;
-    JButton lec = new JButton(new Icilecture("Lecture/Stop"));
-    JButton lecplay = new JButton(new IcilecturePlay("Lecture/Stop"));
+    JPanel un = new JPanel();
+    JPanel deux = new JPanel();
+    JLabel liste = new JLabel("Titre");
+    JTextField test = new JTextField(20);
+    File name = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Playliste/"); 
+    JButton lec = new JButton(new IciAjout("créé"));
     int Lecture = 0;
     
     
-    public Musique(){
+    public Playliste(){
 		super();
 		build();
                 init();
@@ -52,7 +58,7 @@ public class Musique extends JFrame {
 	}
     private void build(){	
 		setTitle("Musique");
-		setSize(400,200);
+		setSize(300,150);
 		setLocationRelativeTo(null);
 		setResizable(true);		
     //    setContentPane(new ImagePanel(new ImageIcon("C:/pendu.jpg").getImage()));
@@ -61,50 +67,33 @@ public class Musique extends JFrame {
     
     private void init(){
         
-        test = listerRepertoire(name);
-        int i;
-        for(i=0;i<test.length;i++){ 
-            liste.addItem(test[i]);
-        } 
-        Principale.add(liste,BorderLayout.CENTER);
-        Principale.add(lec,BorderLayout.CENTER);
+        un.add(liste,BorderLayout.CENTER);
+        un.add(test,BorderLayout.CENTER);
+        deux.add(lec,BorderLayout.EAST);
+        Principale.add(un,BorderLayout.NORTH);
+        Principale.add(deux,BorderLayout.SOUTH);
         
 	
 		
     }
     
-        public String [] listerRepertoire(File repertoire){ 
-            String [] listefichiers; 
-
-            int i; 
-            listefichiers=repertoire.list();
-            return (listefichiers);
-        }
-        
-    public Object GetMusique(){
-        return(liste.getSelectedItem());
-    }
-    
-    public class Icilecture extends AbstractAction{
-        Audio son = new Audio(liste.getSelectedItem());
-        public Icilecture(String text){
+    public class IciAjout extends AbstractAction{
+        public IciAjout(String text){
             super(text);
         }
 
         @Override
         public void actionPerformed(ActionEvent e){
-            if(Lecture ==0){
-                son = new Audio(liste.getSelectedItem());
-                Lecture = 1;
-                son.start();
+            String title = test.getText();
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Playliste/"+title)));
+            } catch (IOException ex) {
+                Logger.getLogger(Playliste.class.getName()).log(Level.SEVERE, null, ex);
             }
-            else{
-                Lecture = 0;
-                son.stop();
             }
         }
     
     }
     
    
-}
+
