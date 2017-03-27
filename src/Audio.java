@@ -13,7 +13,7 @@ public class Audio extends Thread{
         System.out.println(musique);
     }
      
-    public void run(){
+    public int run(){
         File fichier = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Musique/"+musique);
         try {
         AudioFileFormat format = AudioSystem.getAudioFileFormat(fichier);
@@ -39,14 +39,14 @@ public class Audio extends Thread{
                         
              } catch (LineUnavailableException e) {
                e.printStackTrace();
-               return;
+               return(0);
              }
           
         try {
                 line.open(audioFormat);
         } catch (LineUnavailableException e) {
                     e.printStackTrace();
-                    return;
+                    return(0);
         }
         line.start();
     //    Fenetre.begin=true;
@@ -56,9 +56,10 @@ public class Audio extends Thread{
             while ((bytesRead = audioInputStream.read(bytes, 0, bytes.length)) != -1) {
                  line.write(bytes, 0, bytesRead);
                 }
+            return(1);
         } catch (IOException io) {
             io.printStackTrace();
-            return;
+            return(0);
         }
     }
 }

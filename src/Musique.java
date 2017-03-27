@@ -13,9 +13,17 @@ import java.awt.Label;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -34,9 +42,12 @@ import javax.swing.JPanel;
 public class Musique extends JFrame {
     
     JPanel Principale = new JPanel();
+    JPanel panelMus = new JPanel();
+    JPanel panelPlay = new JPanel();
     JComboBox liste = new JComboBox();
     JComboBox play = new JComboBox();
-    File name = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Musique"); 
+    File name = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Musique");
+    File playliste = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Playliste"); 
     String [] test;
     JButton lec = new JButton(new Icilecture("Lecture/Stop"));
     JButton lecplay = new JButton(new IcilecturePlay("Lecture/Stop"));
@@ -66,8 +77,17 @@ public class Musique extends JFrame {
         for(i=0;i<test.length;i++){ 
             liste.addItem(test[i]);
         } 
-        Principale.add(liste,BorderLayout.CENTER);
-        Principale.add(lec,BorderLayout.CENTER);
+        test = listerRepertoire(playliste);
+        for(i=0;i<test.length;i++){ 
+            play.addItem(test[i]);
+        } 
+        panelMus.add(liste,BorderLayout.CENTER);
+        panelMus.add(lec,BorderLayout.CENTER);
+        panelPlay.add(play,BorderLayout.CENTER);
+        panelPlay.add(lecplay,BorderLayout.CENTER);
+        
+        Principale.add(panelMus,BorderLayout.NORTH);
+        Principale.add(panelPlay,BorderLayout.SOUTH);
         
 	
 		
@@ -104,6 +124,34 @@ public class Musique extends JFrame {
             }
         }
     
+    }
+    public class IcilecturePlay extends AbstractAction{
+        String son = (String) play.getSelectedItem();
+        public IcilecturePlay(String text){
+            super(text);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e){
+             String son = (String) play.getSelectedItem();
+             FileInputStream flux;
+            try {
+                flux = new FileInputStream("C:/Users/N. Desmarais/Desktop/ProjetAgile/Playliste/"+son);
+                InputStreamReader lecture=new InputStreamReader(flux);
+                BufferedReader buff=new BufferedReader(lecture);
+                String ligne;
+                while ((ligne=buff.readLine())!=null){
+                    System.out.println(ligne);
+                }
+                buff.close(); 
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             
+             
+        }
     }
     
    
