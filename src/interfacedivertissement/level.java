@@ -5,6 +5,7 @@
  */
 package interfacedivertissement;
 
+import interfacedivertissement.InterfNiv3.Q1;
 import static interfacedivertissement.InterfaceDivertissement.act2;
 import static interfacedivertissement.InterfaceDivertissement.act3;
 
@@ -54,20 +55,20 @@ public class level extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\davy\\Pictures\\bg.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("./src/images/bg.png"));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jLabel1)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addGap(117, 117, 117)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         niv1.setText("Niveaux1");
@@ -104,7 +105,7 @@ public class level extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(196, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(niv3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(niv2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,6 +150,8 @@ public class level extends javax.swing.JFrame {
 
     private void niv3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_niv3ActionPerformed
         // TODO add your handling code here:
+        new Q1().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_niv3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

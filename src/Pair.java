@@ -34,8 +34,9 @@ public class Pair extends MouseAdapter implements MouseMotionListener{
 	JButton Commencer=new JButton(new IciRand("Commencez"));
 	int nombre=0;
 	int temp=0;
+        boolean tre=false;
 	JLabel score=new JLabel("Votre score est de : "+nombre);
-	JFrame f = new JFrame("Casse tête"); 
+	JFrame f = new JFrame("Casse tï¿½te"); 
 	
 	Pair(){
 	      
@@ -81,6 +82,10 @@ public class Pair extends MouseAdapter implements MouseMotionListener{
 			Commencer.setEnabled(false);
 					}
 }
+        
+        private void Commencer(java.awt.event.ActionEvent evt) {
+            tre=true;
+        }     
 	
 	
 	
@@ -92,6 +97,7 @@ public class Pair extends MouseAdapter implements MouseMotionListener{
 
 	public void mouseClicked(MouseEvent e) {
 		  
+            
 		if(e.getY()>=50 && e.getY()<=150 &&  e.getX()>=50 && e.getX()<=150 ){
 			System.out.println(liste[valeur]);
 				if(liste[valeur]=="bleu"){
@@ -123,7 +129,7 @@ public class Pair extends MouseAdapter implements MouseMotionListener{
 				}
 				else{
 				
-			    	JOptionPane.showMessageDialog(null,"Merci d'être passé");
+			    	JOptionPane.showMessageDialog(null,"Merci d'ï¿½tre passï¿½");
 				}
 
 			}
@@ -158,7 +164,7 @@ public class Pair extends MouseAdapter implements MouseMotionListener{
 					}
 					else{
 					
-				    	JOptionPane.showMessageDialog(null,"Merci d'être passé");
+				    	JOptionPane.showMessageDialog(null,"Merci d'ï¿½tre passï¿½");
 					}
 				}
 }
@@ -193,7 +199,7 @@ public class Pair extends MouseAdapter implements MouseMotionListener{
 				}
 				else{
 				
-			    	JOptionPane.showMessageDialog(null,"Merci d'être passé");
+			    	JOptionPane.showMessageDialog(null,"Merci d'ï¿½tre passï¿½");
 				}
 			}
 }
@@ -229,7 +235,7 @@ public class Pair extends MouseAdapter implements MouseMotionListener{
 				}
 				else{
 				
-			    	JOptionPane.showMessageDialog(null,"Merci d'être passé");
+			    	JOptionPane.showMessageDialog(null,"Merci d'ï¿½tre passï¿½");
 				}
 			}
 }
@@ -265,7 +271,7 @@ public class Pair extends MouseAdapter implements MouseMotionListener{
 				}
 				else{
 				
-			    	JOptionPane.showMessageDialog(null,"Merci d'être passé");
+			    	JOptionPane.showMessageDialog(null,"Merci d'ï¿½tre passï¿½");
 				}
 			}
 }
@@ -303,7 +309,7 @@ public class Pair extends MouseAdapter implements MouseMotionListener{
 				}
 				else{
 				
-			    	JOptionPane.showMessageDialog(null,"Merci d'être passé");
+			    	JOptionPane.showMessageDialog(null,"Merci d'ï¿½tre passï¿½");
 				}
 			}
 }

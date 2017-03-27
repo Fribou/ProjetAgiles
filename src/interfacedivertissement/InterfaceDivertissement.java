@@ -99,4 +99,13 @@ public class InterfaceDivertissement {
 
     return random;
 }
+     public static int choixHasard3(){
+        int petit = 1;
+        int haut = 18;
+
+        int random = (int)(Math.random() * (haut-petit)) + petit;
+
+
+    return random;
+}
 }
