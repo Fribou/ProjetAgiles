@@ -5,6 +5,7 @@
  */
 package interfacedivertissement;
 
+import interfacedivertissement.InterfNiv3.Q1;
 import static interfacedivertissement.InterfaceDivertissement.act2;
 import static interfacedivertissement.InterfaceDivertissement.act3;
 
@@ -149,6 +150,8 @@ public class level extends javax.swing.JFrame {
 
     private void niv3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_niv3ActionPerformed
         // TODO add your handling code here:
+        new Q1().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_niv3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
