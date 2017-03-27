@@ -134,16 +134,26 @@ public class Musique extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e){
              String son = (String) play.getSelectedItem();
-             FileInputStream flux;
+             InputStream flux;
+             AudioPlay teste = null;
+             Thread t = null;
             try {
                 flux = new FileInputStream("C:/Users/N. Desmarais/Desktop/ProjetAgile/Playliste/"+son);
                 InputStreamReader lecture=new InputStreamReader(flux);
                 BufferedReader buff=new BufferedReader(lecture);
-                String ligne;
-                while ((ligne=buff.readLine())!=null){
-                    System.out.println(ligne);
+                
+                 
+                if(Lecture ==0){
+                    t = new Thread((Runnable) (teste = new AudioPlay(buff)));
+                    Lecture = 1;
+                    t.start();
                 }
-                buff.close(); 
+                else{
+                    Lecture = 0;
+                    t.stop();
+                }
+                
+                buff.close();
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
