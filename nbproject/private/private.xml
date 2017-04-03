@@ -3,8 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/davy/Documents/NetBeansProjects/ProjetAgiles/src/interfacedivertissement/level.java</file>
             <file>file:/C:/Users/davy/Documents/NetBeansProjects/ProjetAgiles/src/interfacedivertissement/niv1Q10.java</file>
+=======
+            <file>file:/D:/ProjetAgiles/src/Test.java</file>
+            <file>file:/D:/ProjetAgiles/src/interfacedivertissement/InterfaceDivertissement.java</file>
+            <file>file:/D:/ProjetAgiles/src/JeuPendu.java</file>
+            <file>file:/D:/ProjetAgiles/src/interfacedivertissement/QuestionNiv3.java</file>
+            <file>file:/D:/ProjetAgiles/src/interfacedivertissement/AccueilQuiz.java</file>
+>>>>>>> 49606a679d987fc98a1b87d64f05fb72f997bd1d
         </group>
     </open-files>
 </project-private>
