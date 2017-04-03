@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import jeucouleur.JeuCouleur;
 
 public class NewAccueil extends JFrame implements ActionListener {
     
@@ -101,7 +102,7 @@ public class NewAccueil extends JFrame implements ActionListener {
                         
                                 }
                 else if(source == jeu4){
-			new AccueilQuiz().setVisible(true);
+			JeuCouleur.main();
                         
 		}
                 else if(source == jeu1){
