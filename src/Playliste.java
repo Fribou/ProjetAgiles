@@ -44,7 +44,7 @@ public class Playliste extends JFrame {
     JPanel deux = new JPanel();
     JLabel liste = new JLabel("Titre");
     JTextField test = new JTextField(20);
-    File name = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Playliste/"); 
+    File name = new File("Playliste/"); 
     JButton lec = new JButton(new IciAjout("créé"));
     int Lecture = 0;
     

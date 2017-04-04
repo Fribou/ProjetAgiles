@@ -1,2 +1,0 @@
-MyPanel
-Pair

@@ -24,6 +24,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -46,12 +51,13 @@ public class Musique extends JFrame {
     JPanel panelPlay = new JPanel();
     JComboBox liste = new JComboBox();
     JComboBox play = new JComboBox();
-    File name = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Musique");
-    File playliste = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Playliste"); 
+    File name = new File("Musique");
+    File playliste = new File("Playliste"); 
     String [] test;
-    JButton lec = new JButton(new Icilecture("Lecture/Stop"));
-    JButton lecplay = new JButton(new IcilecturePlay("Lecture/Stop"));
+    JButton lec = new JButton(new Icilecture("Lecture"));
+    JButton lecplay = new JButton(new IcilecturePlay("Lecture"));
     int Lecture = 0;
+    int lectureplay = 0;
     
     
     public Musique(){
@@ -106,7 +112,10 @@ public class Musique extends JFrame {
     }
     
     public class Icilecture extends AbstractAction{
-        Audio son = new Audio(liste.getSelectedItem());
+        File sound = null;
+        AudioInputStream audioIn = null;
+        Clip clipMusique;
+        
         public Icilecture(String text){
             super(text);
         }
@@ -114,55 +123,118 @@ public class Musique extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e){
             if(Lecture ==0){
-                son = new Audio(liste.getSelectedItem());
+                sound = new File("Musique/"+(String)liste.getSelectedItem());
+                try {
+                    audioIn = AudioSystem.getAudioInputStream(sound);
+                } catch (UnsupportedAudioFileException ex) {
+                    Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                try {
+                    clipMusique = AudioSystem.getClip();
+                    clipMusique.open(audioIn);
+                } catch (LineUnavailableException ex) {
+                    Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                clipMusique.start();
                 Lecture = 1;
-                son.start();
+                lec.setText("Stop");
             }
             else{
                 Lecture = 0;
-                son.stop();
+                clipMusique.stop();
+                lec.setText("Lecture");
             }
         }
     
     }
+    
+    
     public class IcilecturePlay extends AbstractAction{
-        String son = (String) play.getSelectedItem();
+        File soundPlay = null;
+        AudioInputStream audioInPlay = null;
+        Clip clipPlayliste;
+        Thread t = null;
         public IcilecturePlay(String text){
             super(text);
+            try {
+                clipPlayliste = AudioSystem.getClip();
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         @Override
         public void actionPerformed(ActionEvent e){
-             String son = (String) play.getSelectedItem();
-             InputStream flux;
-             AudioPlay teste = null;
-             Thread t = null;
-            try {
-                flux = new FileInputStream("C:/Users/N. Desmarais/Desktop/ProjetAgile/Playliste/"+son);
-                InputStreamReader lecture=new InputStreamReader(flux);
-                BufferedReader buff=new BufferedReader(lecture);
+            if(lectureplay == 0){
+                lectureplay = 1;
+                String liste = (String) play.getSelectedItem();
+                InputStream flux;
                 
-                 
-                if(Lecture ==0){
-                    t = new Thread((Runnable) (teste = new AudioPlay(buff)));
-                    Lecture = 1;
-                    t.start();
-                }
-                else{
-                    Lecture = 0;
-                    t.stop();
-                }
-                
-                buff.close();
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+               try {
+                   flux = new FileInputStream("Playliste/"+liste);
+                   InputStreamReader lecture=new InputStreamReader(flux);
+                   BufferedReader buff=new BufferedReader(lecture);
+                   ArrayList<String> musique = new ArrayList<>();
+                   String test2;
+                   while ((test2 = buff.readLine())!=null){
+                                   soundPlay = new File("Musique/"+musique);
+                                   musique.add(test2);
+                   }
+
+                   t = new Thread(){
+                       public void run(){
+                           int taille = musique.size();
+                           int i;
+                           for(i=0;i<taille;i++){
+                               soundPlay = new File("Musique/"+musique.get(i));
+                               try {
+                                   audioInPlay = AudioSystem.getAudioInputStream(soundPlay);
+                               } catch (UnsupportedAudioFileException ex) {
+                                   Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+                               } catch (IOException ex) {
+                                   Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+                               }
+
+                               try {
+                                   clipPlayliste.close();
+                                   clipPlayliste.open(audioInPlay);
+                               } catch (LineUnavailableException ex) {
+                                   Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+                               } catch (IOException ex) {
+                                   Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+                               }
+                               clipPlayliste.start();
+                               Lecture = 1;
+                               lecplay.setText("Stop");
+                               while (clipPlayliste.isRunning()){
+
+                               }
+                           }
+                       }
+                   };
+                   t.start();
+
+                   buff.close();
+
+               } catch (FileNotFoundException ex) {
+                   Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+               } catch (IOException ex) {
+                   Logger.getLogger(Musique.class.getName()).log(Level.SEVERE, null, ex);
+               }
             }
-             
-             
+            else if(lectureplay == 1){
+                t.stop();
+                lectureplay = 0;
+                lecplay.setText("Lecture");
+                clipPlayliste.stop();
+            }
         }
     }
+}
     
    
-}

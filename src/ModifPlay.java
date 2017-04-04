@@ -41,10 +41,10 @@ public class ModifPlay extends JFrame {
     JPanel Principale = new JPanel();
     JComboBox listeMus = new JComboBox();
     JComboBox listeplay = new JComboBox();
-    File musique = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Musique");
-    File playliste = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Playliste");
+    File musique = new File("Musique");
+    File playliste = new File("Playliste");
     String [] test;
-    JButton lec = new JButton(new IciAjout("Lecture/Stop"));
+    JButton lec = new JButton(new IciAjout("Ajouter"));
     int Lecture = 0;
     
     

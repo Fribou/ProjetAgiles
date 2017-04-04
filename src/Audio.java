@@ -7,16 +7,16 @@ public class Audio extends Thread{
      
     AudioInputStream audioInputStream = null;
     SourceDataLine line;
-    String musique;
-    public int lecture;
-    public Audio(Object test){
-        musique = (String)test;
-        System.out.println(musique);
-    }
      
     public void run(){
-        lecture = 1;
-        File fichier = new File("C:/Users/N. Desmarais/Desktop/ProjetAgile/Musique/"+musique);
+        File fichier = new File("C:/audio.wav");
+        try {
+        AudioFileFormat format = AudioSystem.getAudioFileFormat(fichier);
+        } catch (UnsupportedAudioFileException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
          
         try {
             audioInputStream = AudioSystem.getAudioInputStream(fichier);
@@ -51,8 +51,6 @@ public class Audio extends Thread{
             while ((bytesRead = audioInputStream.read(bytes, 0, bytes.length)) != -1) {
                  line.write(bytes, 0, bytesRead);
                 }
-            lecture = 0;
-            return;
         } catch (IOException io) {
             io.printStackTrace();
             return;

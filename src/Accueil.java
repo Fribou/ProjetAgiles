@@ -1,4 +1,5 @@
 
+import interfacedivertissement.AccueilQuiz;
 	import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -37,10 +38,9 @@ import javax.swing.JTextField;
 		JMenu musique = new JMenu("Musique");
 		JMenu regle = new JMenu("Regle");
 		JMenu auteur = new JMenu("A Propos");
-		JMenuItem mus = new JMenuItem(new Icimusique("Liste des Musiques"));
-		JMenuItem newplay = new JMenuItem(new Iciplayliste("Créé Playliste"));
-		JMenuItem play = new JMenuItem(new IciModifPlay("Modifié Playliste"));
-                JMenuItem impor = new JMenuItem("Importer musique");
+		JMenuItem yeux = new JMenuItem(new IciSon1("eyes of tiger"));
+		JMenuItem sardine = new JMenuItem(new IciSon2("surprise XD"));
+		JMenuItem kalash = new JMenuItem(new IciSon3("Special Davy"));
 		JRadioButtonMenuItem davy = new JRadioButtonMenuItem(new IciQui("davy"));
 		JRadioButtonMenuItem Eric = new JRadioButtonMenuItem(new IciQui2("Eric"));
 		JRadioButtonMenuItem Alexis = new JRadioButtonMenuItem(new IciQui3("Alexis"));
@@ -54,10 +54,15 @@ import javax.swing.JTextField;
 		JMenuItem ou = new JMenuItem(new Iciou("Casse t�te?"));
 		JButton pendu = new JButton(new IciPendu("Pendu Aveugle"));
 		JButton Carte = new JButton(new IciCarte("Casse t�te?"));
-		JButton Quiz = new JButton(new IciQuiz("Quiz vari�"));
+		JButton re = new JButton(new IciQuiz("Quiz vari�"));
+                JButton Quiz = new JButton(new IciQuiz("Quiz vari�"));
+                
         ImageIcon icon = new ImageIcon(new ImageIcon("C:/PIHM/moi.jpg").getImage().getScaledInstance(70, 150, Image.SCALE_DEFAULT));
         ImageIcon icon2 = new ImageIcon(new ImageIcon("C:/PIHM/pendu.jpg").getImage().getScaledInstance(70, 150, Image.SCALE_DEFAULT));
         ImageIcon icon3 = new ImageIcon(new ImageIcon("C:/PIHM/loupe.jpg").getImage().getScaledInstance(70, 150, Image.SCALE_DEFAULT));
+        audio3 son3 = new audio3();
+        audio2 son2 = new audio2();
+        Audio son = new Audio();
         boolean com=false;
         boolean com2=false;
         boolean com3=false;
@@ -95,10 +100,9 @@ import javax.swing.JTextField;
 			auteur1.add(Alexis);
 			auteur1.add(Eric);
 			auteur.add(auteur1);
-			musique.add(mus);
-			musique.add(newplay);
-			musique.add(play);
-                        musique.add(impor);
+			musique.add(yeux);
+			musique.add(sardine);
+			musique.add(kalash);
 			regle.add(penduA);
 			regle.add(ou);
 			menuBar.add(couleur);
@@ -110,52 +114,142 @@ import javax.swing.JTextField;
 			panel.add(panel3,BorderLayout.NORTH);
 			panel4.add(pendu);
 			panel5.add(Carte);
-			panel6.add(Quiz);
+			panel6.add(re);
 			panel2.add(panel4,BorderLayout.NORTH);
 			panel2.add(panel5,BorderLayout.CENTER);
 			panel2.add(panel6,BorderLayout.SOUTH);
 			panel.add(panel2,BorderLayout.CENTER);	
-			}			
+			}
+		
+		
+	
+			
+		public class FenetreSon extends JFrame{
+			JPanel pane=new JPanel();
+			JPanel panelH=new JPanel();
+			JButton stop = new JButton(new Icistop("Arreter"));
+			JLabel label= new JLabel("ecrivez ici");
+			
+			public FenetreSon(){
+				super();
+				build2();
+				init2();
+				setContentPane(pane);
+				setVisible(true);
+			}
+	
+			public class Icistop extends AbstractAction{
+				
+				public Icistop(String texte){
+					super(texte);
+				}
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(com==true)
+						son.stop();
+						com=false;
+						dispose();
+					
+					if(com2==true)
+						son2.stop();
+						com2=false;
+						dispose();
+					
+					if(com3==true)
+						son3.stop();
+						com3=false;
+						dispose();
+					
+						
+					}
+				}
+				
+				
+				
+				private void build2(){
+					setTitle("Copie");
+					setSize(200,100);
+					setLocationRelativeTo(null);
+					setResizable(true);		
+					setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+					
+				}
+				
+				private void init2(){
+					pane.setLayout(new BorderLayout());
+					panelH.setLayout(new FlowLayout());
+					panelH.add(stop);
+					pane.add(panelH);
+					
+					
+					}
+					
+					
+			
+	
+				}	
+			
 	
 
 		
 		
-public class Icimusique extends AbstractAction{
+public class IciSon1 extends AbstractAction{
 			
-			public Icimusique(String texte){
+			public IciSon1(String texte){
 				super(texte);
 			}
 
 			@Override
-                        public void actionPerformed(ActionEvent e) {
-                                Musique son = new Musique();
-                        }	
+			public void actionPerformed(ActionEvent e) {
+				if(com2==true || com3==true)
+					son.stop();	
+				else{
+					son.start();
+					com=true;
+					FenetreSon fe=new FenetreSon();
+				}
+
+			}	
 		}
 
-public class Iciplayliste extends AbstractAction{
+public class IciSon2 extends AbstractAction{
+	
+	public IciSon2(String texte){
+		super(texte);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(com==true || com3==true)
+			son.stop();	
+		else{
+			son2.start();
+			com2=true;
+			FenetreSon fe=new FenetreSon();
+		}
+	}	
+}
+
+public class IciSon3 extends AbstractAction{
+	
+	public IciSon3(String texte){
+		super(texte);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(com==true || com==true)
+			son.stop();	
+		else{
+			son3.start();	
+			com3=true;
+			FenetreSon fe=new FenetreSon();
 			
-			public Iciplayliste(String texte){
-				super(texte);
-			}
-
-			@Override
-                        public void actionPerformed(ActionEvent e) {
-                                Playliste son = new Playliste();
-                        }	
 		}
 
-public class IciModifPlay extends AbstractAction{
-			
-			public IciModifPlay(String texte){
-				super(texte);
-			}
-
-			@Override
-                        public void actionPerformed(ActionEvent e) {
-                                ModifPlay son = new ModifPlay();
-                        }	
-		}
-
+	}	
+}
 
 		
 	public class IciRouge extends AbstractAction{
@@ -295,7 +389,7 @@ public class IciQuiz extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		QUIZ qui = new QUIZ();
+		AccueilQuiz.main();
 	}	
 }
 
