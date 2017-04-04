@@ -1,5 +1,8 @@
+import interfacedivertissement.AccueilQuiz;
 import java.awt.*;
 import static java.awt.BorderLayout.CENTER;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -7,16 +10,51 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import jeucouleur.JeuCouleur;
 
-public class NewAccueil extends JFrame {
+public class NewAccueil extends JFrame implements ActionListener {
     
-    public static void addComponentsToPane(Container pane) {
+    JButton jeu1;
+    JButton jeu2;
+    JButton jeu3;
+    JButton jeu4;
+    
+    public NewAccueil() {
+        
+        try {
+            this.setContentPane(new JPanel() {
+                BufferedImage image = ImageIO.read(new File("./src/images/menuBackground.jpg"));
+                public void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    g.drawImage(image, 0, 0, 800, 600, this);
+                }
+            });
+        } catch (IOException ex) {
+            Logger.getLogger(NewAccueil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        addComponentsToPane(this.getContentPane());
+        
+        // Création de la fenêtre
+        this.setTitle("Davy déosgames : Et oui monsieur, j'ai de l'humour");
+        this.setSize(800, 600);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       
+        this.setResizable(false);
+        this.setVisible(true);
+        jeu1.addActionListener(this);
+        jeu2.addActionListener(this);
+        jeu3.addActionListener(this);
+        jeu4.addActionListener(this);
+     }
+    
+    public void addComponentsToPane(Container pane) {
         pane.setLayout(null);
 
-        JButton jeu1 = new JButton("Pendu");
-        JButton jeu2 = new JButton("Casse-tête");
-        JButton jeu3 = new JButton("Quizz");
-        JButton jeu4 = new JButton("Color Game");
+        jeu1 = new JButton("Pendu");
+        jeu2 = new JButton("Casse-tête");
+        jeu3 = new JButton("Quizz");
+        jeu4 = new JButton("Color Game");
         
         JButton musique1 = new JButton("Musiques et playlists");
         JButton musique2 = new JButton("Créer une playlist");
@@ -53,31 +91,29 @@ public class NewAccueil extends JFrame {
         musique3.setBounds(400 + insets.left,535 + insets.top,200,30);
         size = musique4.getPreferredSize();
         musique4.setBounds(600 + insets.left,535 + insets.top,200,30);
-    }
-    
-    public NewAccueil() {
-        try {
-            this.setContentPane(new JPanel() {
-                BufferedImage image = ImageIO.read(new File("./src/images/menuBackground.jpg"));
-                public void paintComponent(Graphics g) {
-                    super.paintComponent(g);
-                    g.drawImage(image, 0, 0, 800, 600, this);
-                }
-            });
-        } catch (IOException ex) {
-            Logger.getLogger(NewAccueil.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        addComponentsToPane(this.getContentPane());
-        
-        // Création de la fenêtre
-        this.setTitle("Davy déosgames : Et oui monsieur, j'ai de l'humour");
-        this.setSize(800, 600);
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       
-        this.setResizable(false);
-        this.setVisible(true);
         
         
     }
+     public void actionPerformed(ActionEvent e) {
+		JButton source = (JButton) e.getSource();
+ 
+		if(source == jeu3){
+			new AccueilQuiz().setVisible(true);
+                        
+                                }
+                else if(source == jeu4){
+			JeuCouleur.main();
+                        
+		}
+                else if(source == jeu1){
+			JeuPendu p = new JeuPendu();
+                        
+		}
+                else {
+			Pair p = new Pair();
+                        
+		}
+                
+	}
+ 
 }

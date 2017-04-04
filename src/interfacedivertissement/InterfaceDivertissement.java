@@ -59,7 +59,7 @@ public class InterfaceDivertissement {
     public static String rep17="faux";
     public static String rep18="faux";
     public static String rep19="vrai";
-    public static String rep20="vrai";
+    public static String rep20="faux";
     public static String rep21="faux";
     public static String rep22="vrai";
     public static String rep23="faux";
